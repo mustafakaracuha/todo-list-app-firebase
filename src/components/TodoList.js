@@ -84,7 +84,7 @@ function TodoList(props) {
           {todoList.length === 0 && (
             <p
               style={{
-                alignItems: "center",
+                alignItems: "start",
                 justifyContent: "center",
                 display: "flex",
                 color: "#d2beb2",
