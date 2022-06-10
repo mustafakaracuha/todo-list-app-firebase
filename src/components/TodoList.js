@@ -42,7 +42,6 @@ function TodoList(props) {
       })
       .catch(alert);
     setLoading(true);
-    toast(item + " " + "deleted");
     setTimeout(() => {
       setLoading(false);
     }, 500);
