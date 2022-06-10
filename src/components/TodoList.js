@@ -44,7 +44,7 @@ function TodoList(props) {
       })
       .catch(alert);
     setLoading(true);
-    toast(item + " " + "deleted");
+    toast(item + "" + "deleted");
     setTimeout(() => {
       setLoading(false);
     }, 500);
@@ -58,7 +58,7 @@ function TodoList(props) {
         let childData = childSnapshot.val();
         setTodoList(childData);
       });
-      if (todoList.length === 0 || todoList.length !== 0) setLoading(false);
+     setLoading(false);
     });
   }, []);
 
