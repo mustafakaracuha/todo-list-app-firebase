@@ -3,7 +3,6 @@ import database from "../firebase";
 import { MdDelete } from "react-icons/md";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
-import { toast } from "react-toastify";
 
 function TodoList(props) {
   const [todoText, setTodoText] = useState();
@@ -18,7 +17,6 @@ function TodoList(props) {
 
   const saveTodo = () => {
     if (todoText === "" || todoText === undefined) {
-      toast("Write to do 😋");
     } else {
       todoList.unshift(todoText);
       setTodoList(todoText);
