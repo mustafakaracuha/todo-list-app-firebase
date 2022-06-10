@@ -9,7 +9,7 @@ function TodoList(props) {
   const [todoText, setTodoText] = useState();
   const [todoList, setTodoList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [color, setColor] = useState("#d2beb2");
+  const [color] = useState("#d2beb2");
 
   const override = css`
     display: block;
