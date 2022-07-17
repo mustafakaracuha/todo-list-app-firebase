@@ -1,16 +1,16 @@
-
 import firebase from 'firebase';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBU3N9NuEPgBkZfAkrqd9JkvkjgeG5b9n8",
-    authDomain: "todo-25f53.firebaseapp.com",
-    projectId: "todo-25f53",
-    storageBucket: "todo-25f53.appspot.com",
-    messagingSenderId: "52324035103",
-    appId: "1:52324035103:web:c6f77a1aca5b0e0ce7c32a",
-    measurementId: "G-F27TTQ6VFF"
-  };
-  
+  apiKey: "AIzaSyAgdgZGXTFHJGUl66jfg1uYiq9zAIukvEQ",
+  authDomain: "todo-891aa.firebaseapp.com",
+  projectId: "todo-891aa",
+  storageBucket: "todo-891aa.appspot.com",
+  messagingSenderId: "35960037038",
+  appId: "1:35960037038:web:dfd9fa706a43c2d815973f",
+  measurementId: "G-2G74VQ1X8W"
+};
+
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();

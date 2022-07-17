@@ -20,45 +20,42 @@ function TodoList(props) {
     if (todoText === "" || todoText === undefined) {
       toast("Write to do 😋");
     } else {
-      todoList.unshift(todoText);
-      setTodoList(todoText);
-      database
-        .ref("todoList")
-        .set({
-          todoList,
-        })
-        .catch(alert);
+      let arr = {
+        text: todoText,
+        check: false,
+      };
+      todoList.unshift(arr);
+      setTodoList(arr);
+      database.ref("todoList").set(todoList);
       setTodoText("");
     }
   };
 
-  const deleteTodo = (item) => {
-    const arr = [...todoList];
+  const checkItem = (item) => {
     const cardIndex = todoList.indexOf(item);
-    arr.splice(cardIndex, 1);
-    setTodoList(arr);
-    database
-      .ref("todoList")
-      .set({
-        arr,
-      })
-      .catch(alert);
-    setLoading(true);
-    toast(item + "" + "deleted");
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    if (item.check === false)
+      database.ref(`todoList/${cardIndex}/check`).set(true);
+    else database.ref(`todoList/${cardIndex}/check`).set(false);
+  };
+
+  const deleteTodo = (item) => {
+    const data = [...todoList];
+    const cardIndex = todoList.indexOf(item);
+    data.splice(cardIndex, 1);
+    setTodoList(data);
+    database.ref(`todoList/${cardIndex}`).remove();
+    toast(item.text + " " + "deleted");
   };
 
   useEffect(() => {
     setLoading(true);
-    const todoRef = database.ref("todoList");
+    const todoRef = database.ref();
     todoRef.on("value", function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         let childData = childSnapshot.val();
         setTodoList(childData);
       });
-     setLoading(false);
+      setLoading(false);
     });
   }, []);
 
@@ -94,8 +91,13 @@ function TodoList(props) {
             </p>
           )}
           {todoList.map((item, i) => (
-            <li key={i}>
-              {i + 1}. {item}
+            <li key={i} title={item.text}>
+              <p
+                onClick={() => checkItem(item)}
+                className={item.check === true ? "textCheckLine" : ""}
+              >
+                {i + 1}. {item.text}
+              </p>
               <button onClick={() => deleteTodo(item)} title="delete">
                 <MdDelete size="25" color="#8c7c73" />
               </button>
