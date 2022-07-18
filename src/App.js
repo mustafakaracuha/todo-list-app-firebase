@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
-const AppTitle = "Todo List";
+const AppTitle = "To do List";
 
 function App() {
   return (

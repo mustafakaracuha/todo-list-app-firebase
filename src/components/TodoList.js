@@ -1,34 +1,58 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo, load, deleteTodos } from "../stores/todo";
 import database from "../firebase";
 import { MdDelete } from "react-icons/md";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
 import { toast } from "react-toastify";
+import { nanoid } from "nanoid";
 
 function TodoList(props) {
-  const [todoText, setTodoText] = useState();
-  const [todoList, setTodoList] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [color] = useState("#d2beb2");
+  const [todoText, setTodoText] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const { todoList } = useSelector((state) => state.todo);
 
   const override = css`
     display: block;
     margin: 0 auto;
   `;
 
+  const checkList = () => {
+    setLoading(true);
+    const todoRef = database.ref();
+    todoRef.on("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        let childData = childSnapshot.val();
+        dispatch(load(childData));
+      });
+      setLoading(false);
+    });
+  };
+
   const saveTodo = () => {
     if (todoText === "" || todoText === undefined) {
       toast("Write to do 😋");
     } else {
-      let arr = {
+      const newTodo = {
+        id: nanoid(),
         text: todoText,
         check: false,
       };
-      todoList.unshift(arr);
-      setTodoList(arr);
-      database.ref("todoList").set(todoList);
+      dispatch(addTodo(newTodo));
       setTodoText("");
     }
+  };
+
+  const deleteTodo = (item) => {
+    const data = [...todoList];
+    const cardIndex = data.indexOf(item);
+    dispatch(deleteTodos(item))
+    database.ref(`todoList/${cardIndex}`).remove();
+    toast(item.text + " " + "deleted");
   };
 
   const checkItem = (item) => {
@@ -38,25 +62,8 @@ function TodoList(props) {
     else database.ref(`todoList/${cardIndex}/check`).set(false);
   };
 
-  const deleteTodo = (item) => {
-    const data = [...todoList];
-    const cardIndex = todoList.indexOf(item);
-    data.splice(cardIndex, 1);
-    setTodoList(data);
-    database.ref(`todoList/${cardIndex}`).remove();
-    toast(item.text + " " + "deleted");
-  };
-
   useEffect(() => {
-    setLoading(true);
-    const todoRef = database.ref();
-    todoRef.on("value", function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {
-        let childData = childSnapshot.val();
-        setTodoList(childData);
-      });
-      setLoading(false);
-    });
+    checkList();
   }, []);
 
   return (
