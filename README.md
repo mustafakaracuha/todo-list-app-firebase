@@ -19,4 +19,4 @@ Git clone [https://github.com/mustafakaracuha/todo-list-firebase.git](https://gi
 
 ### Screenshot
 
-<img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="muskaracuha" height="30" width="40" />
+<img align="center" src="https://github.com/mustafakaracuha/todo-list-firebase/blob/master/src/assets/screenshot/app.gif" alt="muskaracuha" />
