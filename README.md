@@ -12,7 +12,7 @@
 
 🔗 Link : https://todo-list-firebase-app.vercel.app/
 
-### Installation and operating
+### Installation
 
 🔗 Git clone [https://github.com/mustafakaracuha/todo-list-firebase.git](https://github.com/mustafakaracuha/todo-list-firebase.git)
 <br/>
