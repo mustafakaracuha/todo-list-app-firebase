@@ -1,5 +1,4 @@
-## To do List Firebase
+# To do List App 
 
-
-
+## Technologies and tools
 
