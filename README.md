@@ -3,11 +3,12 @@
 
 ## Technologies and tools
 
-⚙️ React Js 
-💾 Redux Tool Kit
-🚐 Firebase
-🎨 Scss
+- ⚙️ React Js 
+- 💾 Redux Tool Kit
+- 🚐 Firebase
+- 🎨 Scss
 
-## Installation and operating
+
+### Installation and operating
 
 Git clone 
