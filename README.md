@@ -1,5 +1,5 @@
 
-# To do App 
+# To do List 
 
 ## Technologies and tools
 
