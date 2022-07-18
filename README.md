@@ -18,7 +18,7 @@
 <br/>
 <br/>
 ⚡️  npm install <br/>
-⚡️  npm start 
+⚡️  npm start <br/>
 💥 enjoy 
 
 ### Screenshot
