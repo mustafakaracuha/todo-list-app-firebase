@@ -14,7 +14,7 @@
 
 ### Installation
 
-🔗 Git clone [https://github.com/mustafakaracuha/todo-list-firebase.git](https://github.com/mustafakaracuha/todo-list-firebase.git)
+🔗 git clone [https://github.com/mustafakaracuha/todo-list-firebase.git](https://github.com/mustafakaracuha/todo-list-firebase.git)
 <br/>
 <br/>
 ⚡️  npm install <br/>
