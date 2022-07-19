@@ -37,7 +37,8 @@ function TodoList(props) {
     });
   };
 
-  const saveTodo = () => {
+  const saveTodo = (e) => {
+    e.preventDefault();
     if (todoText === "" || todoText === undefined) {
       toast("Write to do 😋");
     } else {
@@ -52,11 +53,10 @@ function TodoList(props) {
   };
 
   const deleteTodo = (item) => {
-    const data = [...todoList];
-    const cardIndex = data.indexOf(item);
-    dispatch(deleteTodos(item))
+    const cardIndex = [...todoList].indexOf(item);
     database.ref(`todoList/${cardIndex}`).remove();
     toast(item.text + " " + "deleted");
+    dispatch(deleteTodos(item))
   };
 
   const checkItem = (item) => {
@@ -73,6 +73,7 @@ function TodoList(props) {
   return (
     <div id="content" className="content">
       <h1>{props.appName}</h1>
+      <form onSubmit={saveTodo}>
       <div>
         <input
           placeholder="Write To-do"
@@ -116,6 +117,7 @@ function TodoList(props) {
           ))}
         </ul>
       </div>
+      </form>
     </div>
   );
 }
