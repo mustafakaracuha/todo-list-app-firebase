@@ -21,8 +21,11 @@ const todos = createSlice({
       database.ref("todoList").set(state.todoList);
     },
      deleteTodos: (state, action) => {
-     state.todoList = state.todoList.filter(todo => todo.id !== action.payload.id)
-    },
+      const data = [...state.todoList]
+      const index = data.indexOf(action.payload)
+      data.splice(index,1)
+      state.todoList = data
+     },
   },
 });
 
