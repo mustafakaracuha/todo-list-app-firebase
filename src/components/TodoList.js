@@ -53,7 +53,7 @@ function TodoList(props) {
   };
 
   const deleteTodo = (item) => {
-    const cardIndex = [...todoList].indexOf(item);
+    const cardIndex = [...todoList].indexOf(item);   
     database.ref(`todoList/${cardIndex}`).remove();
     toast(item.text + " " + "deleted");
     dispatch(deleteTodos(item))
