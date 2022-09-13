@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, load, deleteTodos } from "../stores/todo";
-import database from "../firebase";
+import { addTodo, load, deleteTodos } from "../stores/features/todo";
+import database from "../config/firebase";
 import { MdDelete } from "react-icons/md";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
@@ -15,15 +15,11 @@ function TodoList(props) {
 
   const dispatch = useDispatch();
   const { todoList } = useSelector((state) => state.todo);
- 
 
   const override = css`
     display: block;
     margin: 0 auto;
   `;
-
-
-
 
   const checkList = () => {
     setLoading(true);
@@ -53,10 +49,10 @@ function TodoList(props) {
   };
 
   const deleteTodo = (item) => {
-    const cardIndex = [...todoList].indexOf(item);   
+    const cardIndex = [...todoList].indexOf(item);
     database.ref(`todoList/${cardIndex}`).remove();
     toast(item.text + " " + "deleted");
-    dispatch(deleteTodos(item))
+    dispatch(deleteTodos(item));
   };
 
   const checkItem = (item) => {
@@ -74,49 +70,49 @@ function TodoList(props) {
     <div id="content" className="content">
       <h1>{props.appName}</h1>
       <form onSubmit={saveTodo}>
-      <div>
-        <input
-          placeholder="Write To-do"
-          value={todoText}
-          onChange={(e) => setTodoText(e.target.value)}
-        />
-        <button onClick={saveTodo}>Add</button>
-      </div>
-      <div className="todoList">
-        <ul className="travelcompany-input">
-          <ClipLoader
-            color={color}
-            css={override}
-            loading={loading}
-            size={40}
+        <div>
+          <input
+            placeholder="Write To-do"
+            value={todoText}
+            onChange={(e) => setTodoText(e.target.value)}
           />
-          {todoList.length === 0 && (
-            <p
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                color: "#d2beb2",
-              }}
-            >
-              Write To-do
-            </p>
-          )}
-          {todoList.map((item, i) => (
-            <li key={i} title={item.text}>
+          <button onClick={saveTodo}>Add</button>
+        </div>
+        <div className="todoList">
+          <ul className="travelcompany-input">
+            <ClipLoader
+              color={color}
+              css={override}
+              loading={loading}
+              size={40}
+            />
+            {todoList.length === 0 && (
               <p
-                onClick={() => checkItem(item)}
-                className={item.check === true ? "textCheckLine" : ""}
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                  color: "#d2beb2",
+                }}
               >
-                {i + 1}. {item.text}
+                Write To-do
               </p>
-              <button onClick={() => deleteTodo(item)} title="delete">
-                <MdDelete size="25" color="#8c7c73" />
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+            )}
+            {todoList.map((item, i) => (
+              <li key={i} title={item.text}>
+                <p
+                  onClick={() => checkItem(item)}
+                  className={item.check === true ? "textCheckLine" : ""}
+                >
+                  {i + 1}. {item.text}
+                </p>
+                <button onClick={() => deleteTodo(item)} title="delete">
+                  <MdDelete size="25" color="#8c7c73" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </form>
     </div>
   );
