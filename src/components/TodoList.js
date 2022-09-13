@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, load, deleteTodos } from "../stores/features/todo";
-import database from "../config/firebase";
+
 import { MdDelete } from "react-icons/md";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
 import { toast } from "react-toastify";
 import { nanoid } from "nanoid";
+
+import { addTodo, load, deleteTodos } from "../stores/features/todo";
+import database from "../config/firebase";
+
 
 function TodoList(props) {
   const [color] = useState("#d2beb2");
