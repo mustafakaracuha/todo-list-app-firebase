@@ -10,7 +10,6 @@ import { nanoid } from "nanoid";
 import { addTodo, load, deleteTodos } from "../stores/features/todo";
 import database from "../config/firebase";
 
-
 function TodoList(props) {
   const [color] = useState("#d2beb2");
   const [todoText, setTodoText] = useState("");

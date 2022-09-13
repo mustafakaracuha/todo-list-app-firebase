@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBU3N9NuEPgBkZfAkrqd9JkvkjgeG5b9n8",
@@ -8,13 +8,11 @@ const firebaseConfig = {
   storageBucket: "todo-25f53.appspot.com",
   messagingSenderId: "52324035103",
   appId: "1:52324035103:web:3e8b531210972e07e7c32a",
-  measurementId: "G-T36WZ7MN99"
+  measurementId: "G-T36WZ7MN99",
 };
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+var database = firebase.database();
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  var database = firebase.database();
-    
-  export default database;
-  
+export default database;
